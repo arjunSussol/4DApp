@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE macros SYSTEM "http://www.4d.com/dtd/2007/macros.dtd" >
+<macros>
+//
+// Macros.xml file.
+// 
+// Description
+// This file is created in the 4D folder at the first launch of the database.
+// It automatically creates several macro commands that can be enriched or
+// modified. You can also add all the macros required for your own development
+// needs manually.
+//
+// List of default macro commands.
+// 
+// Logical blocks
+// --------------
+// If "If" logical block
+// IfElse "If" logical block with an "Else" proposition
+// CaseOf "Case" logical block
+// While "While" logical block
+// For "For" logical block
+// Repeat "Repeat" logical block
+// 
+// Frequently-used database blocks
+// -------------------------------
+// "LoopRecord" Loop on a table selection with saving of 
+//			record (use a table name as selection)
+// "LoopRecordNoSave" Loop on a table selection without saving 
+//			records (use a table name as selection)
+// 
+// Useful blocks
+// -------------
+// "Header"	Header for method name
+// 
+// "CodeModif" Adds 4D user name and date for development 
+//			in multi-user environment
+
+// Logical blocks ________________________________________________
+<macro name="If">
+<text>
+If(<caret/>)
+
+End if
+
+</text>
+</macro>
+
+<macro name="IfElse">
+<text>
+If(<caret/>)
+
+Else
+
+End if
+
+</text>
+</macro>
+
+<macro name="CaseOf">
+<text>
+Case of
+:(<caret/>)
+
+End case
+
+</text>
+</macro>
+
+<macro name="While">
+<text>
+While(<caret/>)
+
+End while
+
+</text>
+</macro>
+
+<macro name="For">
+<text>
+For(<caret/>;;)
+
+End for
+
+</text>
+</macro>
+
+<macro name="Repeat">
+<text>
+Repeat
+
+Until(<caret/>)
+</text>
+</macro>
+
+
+
+
+// Useful blocks _________________________________________________
+	<macro name="ssh" version = "3">
+	<text>// --------------- <method_name/> ---------------
+// $1 - (type) - Description
+// $2 - (type) - Description
+// $0 - (type) - Description
+// --------------- Description ---------------
+// <caret/>
+</text>
+	
+	
+	</macro>
+		<macro name="ssmod" version = "2">
+        <text><method>aa_macros("mod")</method></text>
+	</macro>
+	
+</macros>
+
+

@@ -1,0 +1,10 @@
+  //%attributes = {"lang":"en"} comment added and reserved by 4D.
+  // --------------- On Startup ---------------
+  // No parameters
+  // --------------- Description ---------------
+  // At startup, initialize the global arrays with user details to login successfully
+
+
+userInitializeArrays   // Set interprocess arrays with user details
+userLogin   // Open login form at startup, and process the login task.
+

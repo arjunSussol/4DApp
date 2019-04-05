@@ -1,0 +1,16 @@
+  //%attributes = {"lang":"en"} comment added and reserved by 4D.
+  // --------------- Navigation.objNavShowUsers ---------------
+  // No parameters
+  // --------------- Description ---------------
+  // It shows listbox which populates user details
+
+
+Case of 
+	: ((Form event=On Clicked) | (Form event=On Double Clicked))
+		C_LONGINT($iWinRef)
+		
+		$iWinRef:=Open form window([User];"UserList";5;Horizontally centered;Vertically centered)
+		SET WINDOW TITLE("Show User list";$iWinRef)
+		DIALOG([User];"UserList")
+		CLOSE WINDOW
+End case 

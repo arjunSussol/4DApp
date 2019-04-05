@@ -1,0 +1,18 @@
+  //%attributes = {"lang":"en"} comment added and reserved by 4D.
+  // --------------- [User].UserList.objAddUser ---------------
+  // No parameters
+  // --------------- Description ---------------
+  // Open new user form to add new user
+
+
+Case of 
+	: (Form event=On Clicked)
+		C_LONGINT($iWinRef)
+		
+		CREATE RECORD([User])  // Create new empty record for user
+		
+		$iWinRef:=Open form window([User];"CreateUser";5;Horizontally centered;Vertically centered)
+		SET WINDOW TITLE("Add new user...")
+		DIALOG([User];"CreateUser")
+		CLOSE WINDOW
+End case 

@@ -1,0 +1,28 @@
+  //%attributes = {"lang":"en"} comment added and reserved by 4D.
+  // --------------- [User].CreateUser ---------------
+  // No parameters
+  // --------------- Description ---------------
+  // It load default values at the form load of User input form.
+  // For existing user, populate respective details and for new user default blank values.
+
+
+Case of 
+	: (Form event=On Load)
+		C_BOOLEAN(chkActive)
+		C_TEXT(tPassword;tConfirmPassword)
+		
+		chkActive:=False
+		tPassword:=""
+		tConfirmPassword:=""
+		
+		HIGHLIGHT TEXT(*;"objUsername";1;1)
+		OBJECT SET PLACEHOLDER(tDoB;"DD/MM/YYYY")
+		OBJECT SET FONT(*;"objPassword@";"%Password")
+		
+		If (Not(Is new record([User]))  // If existing user, set variables with respective values.
+			tPassword:=[User]password
+			tConfirmPassword:=tPassword
+			chkActive:=[User]active
+			
+		End if 
+End case 

@@ -1,0 +1,20 @@
+  //%attributes = {"lang":"en"} comment added and reserved by 4D.
+  // --------------- [User].UserList.objUserList ---------------
+  // No parameters
+  // --------------- Description ---------------
+  // Show the complete details of respective user after double clicking on individual user row.
+
+
+Case of 
+	: (Form event=On Double Clicked)
+		C_LONGINT($iWinRef)
+		
+		If (Count in array(lbUserList;True)=1)  // If a line is selected then show its details
+			QUERY([User];[User]ID=aiUserID{aiUserID})
+			$iWinRef:=Open form window([User];"CreateUser";5;Horizontally centered;Vertically centered)
+			SET WINDOW TITLE("Edit user...")
+			DIALOG([User];"CreateUser")
+			CLOSE WINDOW
+		End if 
+		
+End case 

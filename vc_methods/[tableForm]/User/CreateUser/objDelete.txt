@@ -1,0 +1,12 @@
+  //%attributes = {"lang":"en"} comment added and reserved by 4D.
+  // --------------- [User].CreateUser.objDelete ---------------
+  // No parameters
+  // --------------- Description ---------------
+  // Delete an existing user
+
+
+Case of 
+	: (Form event=On Clicked)
+		userManagement ("delete")  // Delete an existing user by sending parameter "delete" and update listbox
+		ACCEPT
+End case 

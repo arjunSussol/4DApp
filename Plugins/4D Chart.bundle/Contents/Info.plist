@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeIconFile</key>
+			<string>4Dv12-generic.icns</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.4d.4d.WriteDocument</string>
+				<string>com.4d.4d.WriteTemplate</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleExecutable</key>
+	<string>4D Chart</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.4D.4DChart</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>4D Chart</string>
+	<key>CFBundlePackageType</key>
+	<string>BNDL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>13 (105640)</string>
+	<key>CFBundleSignature</key>
+	<string>4DCT</string>
+	<key>CFBundleVersion</key>
+	<string>105640</string>
+	<key>CSResourcesFileMapped</key>
+	<false/>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>4D Chart Document</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.4d.4d.ChartDocument</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>com.apple.ostype</key>
+				<string>CTDC</string>
+				<key>public.filename-extension</key>
+				<array>
+					<string>4CT</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
+	<key>UTImportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>4D Chart Document</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.4d.4d.ChartDocument</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>com.apple.ostype</key>
+				<array>
+					<string>CTDC</string>
+				</array>
+				<key>public.filename-extension</key>
+				<array>
+					<string>4CT</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

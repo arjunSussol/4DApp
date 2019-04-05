@@ -1,0 +1,58 @@
+  //%attributes = {"lang":"en"} comment added and reserved by 4D.
+  // --------------- [User].CreateUser.objValidate ---------------
+  // No parameters
+  // --------------- Description ---------------
+  // Create new user or update existing one after successful validation.
+
+
+Case of 
+	: (Form event=On Clicked)
+		C_TEXT($tPasswordDigestKey;$tConfirmPasswordDigestKey;$tErrorMessage)
+		C_BOOLEAN($bAllOK)
+		
+		$bAllOK:=True
+		
+		If (Is new record([User]))  // If new user check some validation
+			Case of 
+				: ([User]userName="")  // Username cannot be blank
+					$tErrorMessage:="Please type in a valid username"
+					$bAllOK:=False
+					
+				: (Find in array(<>atUserName;[User]userName)#-1)  // Check the username is not already taken
+					$tErrorMessage:="That username is already taken. Choose a different name"
+					$bAllOK:=False
+					
+				: (tPassword="")  // Password cannot be blank
+					$tErrorMessage:="Please type in a valid password"
+					$bAllOK:=False
+			End case 
+			
+		Else 
+			
+			If ([User]userName#Old([User]userName))  // If updated username differ from existing username 
+				If (Find in array(<>atUserName;[User]userName)#-1)  // Check the username is not already taken
+					$tErrorMessage:="That username is already taken. Choose a different username."
+					$bAllOK:=False
+				End if 
+			End if 
+			
+		End if 
+		
+		If ($bAllOK)
+			$tPasswordDigestKey:=Generate digest(tPassword;SHA1 digest)
+			$tConfirmPasswordDigestKey:=Generate digest(tConfirmPassword;SHA1 digest)
+			
+			If ($tPasswordDigestKey#$tConfirmPasswordDigestKey)  // If both password and confirmed password are not same
+				$tErrorMessage:="The two password entries do not match."
+				$bAllOK:=False
+			End if 
+		End if 
+		
+		If ($bAllOK)  // Everything is fine, now save the user details and update listbox
+			userManagement ("save";$tPasswordDigestKey)
+			ACCEPT
+		Else   // If validation errors occur the alert that error message.
+			ALERT($tErrorMessage)
+		End if 
+		
+End case 

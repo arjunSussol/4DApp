@@ -1,0 +1,12 @@
+  //%attributes = {"lang":"en"} comment added and reserved by 4D.
+  // --------------- showNavigator ---------------
+  // No parameters
+  // --------------- Description ---------------
+  // It shows navigator window after successful login. 
+  // Also we can open navigator from menu
+
+
+$iWinRef:=Open form window("Navigator";5;Horizontally centered;Vertically centered)
+SET WINDOW TITLE("Navigator";$iWinRef)
+DIALOG("Navigator")
+CLOSE WINDOW

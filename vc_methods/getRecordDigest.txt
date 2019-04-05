@@ -1,0 +1,50 @@
+  //%attributes = {"lang":"en"} comment added and reserved by 4D.
+  // --------------- getRecordDigest ---------------
+  // $1 - (Pointer) - Pointer to source field
+  // $0 - (Text) - Return the MD5 digest of the record pointed to by $1
+  // --------------- Description ---------------
+  // Generate and return an MD5 digest of the record pointed to in $1
+
+
+C_TEXT($0;$tRecordID;$tFieldValue)
+C_POINTER($1;$pToSourceField)
+C_LONGINT($iTableNumber;$iTotalFields;$i;$iFieldType)
+C_OBJECT(obRecordObject)
+C_BLOB($blToGetDigestKey;$blFieldValue)
+C_PICTURE($picImageFieldValue)
+
+$pToSourceField:=$1
+$tRecordID:=$pToSourceField->  // Get record ID, we can use it whenever we need it.
+
+$iTableNumber:=Table($pToSourceField)  // Get the table number
+$iTotalFields:=Get last field number($pToSourceField)  // Get all the table field that belong to this table
+
+For ($i;1;$iTotalFields)
+	If (Is field number valid($iTableNumber;$i))
+		GET FIELD PROPERTIES($iTableNumber;$i;$iFieldType)
+		
+		  // Blob and Picture data type are not supportive to OB Set command, so converted values of these field to variable before adding to Object.
+		Case of 
+			: ($iFieldType=Is BLOB)
+				$blFieldValue:=Field($iTableNumber;$i)->
+				BLOB TO VARIABLE($blFieldValue;$tFieldValue)
+				OB SET(obRecordObject;Field name($iTableNumber;$i);$tFieldValue)
+				
+			: ($iFieldType=Is picture)
+				$picImageFieldValue:=Field($iTableNumber;$i)->
+				PICTURE TO BLOB($picImageFieldValue;$blFieldValue;".png")
+				BLOB TO VARIABLE($blFieldValue;$tFieldValue)
+				OB SET(obRecordObject;Field name($iTableNumber;$i);$tFieldValue)
+				
+			Else 
+				OB SET(obRecordObject;Field name($iTableNumber;$i);Field($iTableNumber;$i)->)
+		End case 
+		
+	End if 
+End for 
+
+If ((OB Is defined(obRecordObject)) & (Not(OB Is empty(obRecordObject))))
+	VARIABLE TO BLOB(obRecordObject;$blToGetDigestKey)
+End if 
+
+$0:=Generate digest($blToGetDigestKey;MD5 digest)

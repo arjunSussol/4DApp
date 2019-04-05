@@ -1,0 +1,18 @@
+  //%attributes = {"lang":"en"} comment added and reserved by 4D.
+  // --------------- Navigation.objNavAddNewUser ---------------
+  // No parameters
+  // --------------- Description ---------------
+  // It shows form to create new user.
+
+
+Case of 
+	: ((Form event=On Clicked) | (Form event=On Double Clicked))
+		C_LONGINT($iWinRef)
+		
+		CREATE RECORD([User])  // Create new user
+		
+		$iWinRef:=Open form window([User];"CreateUser";5;Horizontally centered;Vertically centered)
+		SET WINDOW TITLE("Add new user";$iWinRef)
+		DIALOG([User];"CreateUser")
+		CLOSE WINDOW
+End case 

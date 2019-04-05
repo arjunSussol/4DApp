@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BuildMachineOSBuild</key>
+	<string>10K549</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>SRPro Convert</string>
+	<key>CFBundleGetInfoString</key>
+	<string>SRPro Convert 1.0.31 ©2006,2009-2012 INFORCE Bratislava spol. s r. o. All Rights Reserved.</string>
+	<key>CFBundleIdentifier</key>
+	<string>sk.inforce.4D.plugin.SRPConvert</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>SRPro Convert</string>
+	<key>CFBundlePackageType</key>
+	<string>BNDL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>SRPro Convert 1.0.31</string>
+	<key>CFBundleSignature</key>
+	<string>4D06</string>
+	<key>CFBundleVersion</key>
+	<string>1.0.31</string>
+	<key>CSResourcesFileMapped</key>
+	<false/>
+	<key>DTCompiler</key>
+	<string>4.0</string>
+	<key>DTPlatformBuild</key>
+	<string>10M2518</string>
+	<key>DTPlatformVersion</key>
+	<string>PG</string>
+	<key>DTSDKBuild</key>
+	<string>9L31a</string>
+	<key>DTSDKName</key>
+	<string>macosx10.5</string>
+	<key>DTXcode</key>
+	<string>0400</string>
+	<key>DTXcodeBuild</key>
+	<string>10M2518</string>
+</dict>
+</plist>

@@ -1,0 +1,19 @@
+  //%attributes = {"lang":"en"} comment added and reserved by 4D.
+  // --------------- userLogin ---------------
+  // No parameters
+  // --------------- Description ---------------
+  // It shows login window at startup. After successful login, the navigator window will be populated.
+
+C_LONGINT($iWinRef)
+
+$iWinRef:=Open form window([User];"Login";5;Horizontally centered;Vertically centered)
+SET WINDOW TITLE("Log-in";$iWinRef)
+DIALOG([User];"Login")
+CLOSE WINDOW
+
+If (OK=1)  // If successful login by clicking Login button, show navigator form. 
+	showNavigator 
+	TRACE  // Show design mode after closing navigator window
+Else   // Quit 4D by clicking Quit button on Login form.
+	QUIT 4D
+End if 

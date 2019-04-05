@@ -1,0 +1,22 @@
+  //%attributes = {"lang":"en"} comment added and reserved by 4D.
+  // --------------- [User].UserList ---------------
+  // No parameters
+  // --------------- Description ---------------
+  // List all existing users over listbox
+
+
+Case of 
+	: (Form event=On Load)
+		ARRAY LONGINT(aiUserID;0)
+		ARRAY TEXT(atUserName;0)
+		ARRAY TEXT(abUserActive;0)
+		
+		OBJECT SET TITLE(*;"objAddUserLabel";"Add User")
+		ALL RECORDS([User])
+		SELECTION TO ARRAY([User]ID;aiUserID;[User]userName;atUserName;[User]active;abUserActive)  // Set all arrays with respective values to populate on listbox
+		
+	: (Form event=On Unload)
+		CLEAR VARIABLE(aiUserID)
+		CLEAR VARIABLE(atUserName)
+		CLEAR VARIABLE(abUserActive)
+End case 

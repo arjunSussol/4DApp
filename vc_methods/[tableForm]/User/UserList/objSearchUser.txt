@@ -1,0 +1,40 @@
+  //%attributes = {"lang":"en"} comment added and reserved by 4D.
+  // --------------- tSearchUser ---------------
+  // No parameters
+  // --------------- Description ---------------
+  // One can search the existing user that listed on listbox by typing the some word of the user
+
+
+Case of 
+		
+	: (Form event=On Load)
+		
+		C_TEXT(tSearchUser;$tFormObjectName)
+		
+		$tFormObjectName:=OBJECT Get name(Object current)  // Get the object name of the search field
+		SearchPicker SET HELP TEXT ($tFormObjectName;"Search users")
+		SearchPicker SET ENTERABLE ($tFormObjectName;True)
+		
+	: (Form event=On Data Change)
+		
+		If (tSearchUser="")  // If search field is blank
+			For ($i;1;Size of array(lbUserHide))  // Show all users
+				lbUserHide{$i}:=False
+			End for 
+			
+		Else   // Look for the user as per written on search field
+			If (Length(tSearchUser)>0)
+				For ($i;1;Size of array(atUserName))
+					If (Position(tSearchUser;atUserName{$i})>0)  // Look the only matching records
+						lbUserHide{$i}:=False
+					Else   // Ignore unmatch records
+						lbUserHide{$i}:=True
+					End if 
+				End for 
+				
+			End if 
+		End if 
+		
+	: (Form event=On Unload)
+		CLEAR VARIABLE(tSearchUser)
+End case 

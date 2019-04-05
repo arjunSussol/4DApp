@@ -1,0 +1,22 @@
+  //%attributes = {"lang":"en"} comment added and reserved by 4D.
+  // --------------- [User].Login ---------------
+  // No parameters
+  // --------------- Description ---------------
+  // On Login form load, set default values and check whether Caps Lock is ON
+
+
+Case of 
+	: (Form event=On Load)
+		C_TEXT(tUsername;tPassword)
+		
+		tUsername:=""
+		tPassword:=""
+		OBJECT SET FONT(*;"objPassword";"%Password")
+		HIGHLIGHT TEXT(*;"objUsername";1;1)
+		
+		If (Caps lock down)  // Warning- if caplock is on
+			OBJECT SET VISIBLE(*;"objCapsWarning";True)
+		Else 
+			OBJECT SET VISIBLE(*;"objCapsWarning";False)
+		End if 
+End case 

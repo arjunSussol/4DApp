@@ -1,0 +1,55 @@
+  //%attributes = {"lang":"en"} comment added and reserved by 4D.
+  // --------------- [User].Login.objLogin ---------------
+  // No parameters
+  // --------------- Description ---------------
+  // Successful login with valid user credentials.
+  // By default there is demo/demo user/password.
+
+
+C_BOOLEAN($0;$bAllOK)
+C_TEXT($tGeneratedDigest;$tErrorMessage)
+C_LONGINT($tFoundElement)
+
+$bAllOK:=True
+
+Case of 
+	: (Form event=On Clicked)
+		Case of 
+			: ((tUsername="demo") & (tPassword="demo"))  // It is default user credential useful for new data.
+				$bAllOK:=True
+				
+			: (Size of array(<>aiUserID)>0)  // If there is at least one user in the database
+				$tFoundElement:=Find in array(<>atUserName;tUsername)
+				
+				If ($tFoundElement<0)  // If entered user doesn't exist
+					$tErrorMessage:="User doesn't exist."
+					$bAllOK:=False
+					
+				Else   // Else, entered user exist 
+					QUERY([User];[User]ID=<>aiUserID{$tFoundElement})  // Search database for entered user
+					
+					If (Records in selection([User])=1)  // There is one valid user
+						$tGeneratedDigest:=Generate digest(tPassword;SHA1 digest)
+						$bAllOK:=($tGeneratedDigest=[User]password)  // Matches password
+						
+						If (Not($bAllOK))
+							$tErrorMessage:="Username and Password are wrong."
+						End if 
+					Else 
+						$tErrorMessage:="Something wrong with user details."
+						$bAllOK:=False
+					End if 
+				End if 
+				
+			Else 
+				$tErrorMessage:="If you are unware about user credential, use demo/demo for user/pass"
+				$bAllOK:=False
+		End case 
+		
+		If ($bAllOK)  // Everything is fine, allow to login the user
+			ACCEPT
+		Else   // Something is wrong, populate the error
+			ALERT($tErrorMessage)
+		End if 
+		
+End case 

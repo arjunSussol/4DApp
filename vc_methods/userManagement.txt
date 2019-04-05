@@ -1,0 +1,40 @@
+  //%attributes = {"lang":"en"} comment added and reserved by 4D.
+  // --------------- userManagement ---------------
+  // $1 - (text) - Action to perform
+  // $2 - (text) - Value to introduce to table if passed
+  // --------------- Description ---------------
+  // Creating, updating, and deleting user depend on parameter $1. 
+  // After success of above task, the global arrays and listbox arrays to populate user must be updated.
+
+
+C_TEXT($1;$2;$tAction;$tPasswordDigestKey)
+
+$tAction:=$1
+If (Count parameters>1)
+	$tPasswordDigestKey:=$2
+End if 
+
+Case of 
+	: ($tAction="save")  // Create new user or update existing user
+		[User]password:=$tPasswordDigestKey
+		[User]active:=chkActive
+		SAVE RECORD([User])
+		UNLOAD RECORD([User])
+		
+		userManagement ("update")  // Recursion, recalling the same method to update interprocess and process variables
+		
+	: ($tAction="delete")  // Delete user
+		READ WRITE([User])  // Give read/write permission to record to delete it.
+		LOAD RECORD([User])
+		DELETE RECORD([User])
+		READ ONLY([User])
+		UNLOAD RECORD([User])
+		
+		userManagement ("update")  // Recursion, recalling the same method to update interprocess and process variables
+		
+	: ($tAction="update")  // Update the interprocess and process arrays after successful modification to the user.
+		userInitializeArrays 
+		COPY ARRAY(<>atUserName;atUserName)
+		COPY ARRAY(<>aiUserID;aiUserID)
+		COPY ARRAY(<>abIsActive;abUserActive)
+End case 

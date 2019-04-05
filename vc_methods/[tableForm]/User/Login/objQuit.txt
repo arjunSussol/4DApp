@@ -1,0 +1,8 @@
+  //%attributes = {"lang":"en"} comment added and reserved by 4D.
+  // --------------- [User].Login.objQuit ---------------
+  // No parameters
+  // --------------- Description ---------------
+  // Quit 4D at startup by clicking Quit button
+
+
+QUIT 4D

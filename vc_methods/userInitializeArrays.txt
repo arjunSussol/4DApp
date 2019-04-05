@@ -1,0 +1,15 @@
+  //%attributes = {"lang":"en"} comment added and reserved by 4D.
+  // --------------- userInitializeArrays ---------------
+  // No parameters
+  // --------------- Description ---------------
+  // Set all existing users to global variables to access everywhere.
+
+
+ARRAY LONGINT(<>aiUserID;0)
+ARRAY TEXT(<>atUserName;0)
+ARRAY BOOLEAN(<>abIsActive;0)
+
+ALL RECORDS([User])
+
+SELECTION TO ARRAY([User]ID;<>aiUserID;[User]userName;<>atUserName;[User]active;<>abIsActive)
+SORT ARRAY(<>atUserName;<>aiUserID;<>abIsActive;>)
